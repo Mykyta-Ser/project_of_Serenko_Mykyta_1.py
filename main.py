@@ -1,4 +1,6 @@
 import random
+
+
 def generate_password():
     for i in range(10000):
         password = create_password()
@@ -9,15 +11,17 @@ def generate_password():
 
 def create_password():
     password = ''
-    while len(password) < 16:
-        elements = '!@$%^&*_abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
+    while len(password) < 4:
+        elements = '1234567890'
         password += random.choice(elements)
-    if password.find('!@$%^&*_') and any(el.isupper() for el in password) and any(el.islower() for el in password) and any(el.isdigit() for el in password):
-        return password
-    else:
-        return f"{password} - недостатньо безпечний"
+    return password
 
 
-passwords = generate_password()
-for el in passwords:
-    print(el)
+# passwords = generate_password()
+# for el in passwords:
+#     print(el)
+f = open("passwords.txt", "r")
+info = []
+for i in f.readlines():
+    info.append(i[:-1])
+print("пароль знайдено" if "1919" in info else "не знайдено")
